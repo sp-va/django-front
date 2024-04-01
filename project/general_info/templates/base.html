@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Заголовок по умолчанию{% endblock title %}</title>
+</head>
+
+<body>
+    <div><a href="/">Главная</a> | <a href="/contacts">Контакты</a> | <a href="/about">О проекте</a> | <a href="/blog">Блог</a></div>
+    <h1>{% block header %}{% endblock header %}</h1>
+    <div>{% block content%}{% endblock content %}</div>
+</body>
+</html>
