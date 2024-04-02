@@ -1,0 +1,39 @@
+<!-- feedback_form.html -->
+
+<form id="feedback-form" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Отправить">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ $('#form').on('submit', function(e){
+
+         e.preventDefault();
+
+           $.ajax({
+                type : "POST",
+                url: "{% url 'Обратная связь' %}",
+                data: {
+                 email : $('#email').val(),
+                 message : $('#message').val(),
+                 csrfmiddlewaretoken: '{{ csrf_token }}',
+                 dataType: "json",
+
+                },
+
+                success: function(data){
+                   $('#output').html(data.msg) /* response message */
+                },
+
+                failure: function() {
+
+                }
+
+
+            });
+
+
+                 });
+</script>

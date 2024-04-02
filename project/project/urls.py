@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from general_info.views import RootPage
+from general_info.views import RootPage, AboutPage, send_feedback
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', RootPage.as_view(), name="Главная страница"),
+    path('about/', AboutPage.as_view(), name="О проекте"),
+    path('contacts/', send_feedback, name="Обратная связь")
 ]
