@@ -1,25 +1,21 @@
 {% extends "general_info/base.html" %}
 
-{% block title %}Контакты{% endblock title %}
-
-{% block header %}Форма для отправки заявки на обратную связь{% endblock header %}
-
 {% block content %}
-<form id="feedback-form" method="POST">
+<form id='add-blog' method="POST">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Отправить">
+  <button type="submit">Отправить</button>
 </form>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
- $('#feedback-form').on('submit', function(e){
-
+ $('#add-blog').on('submit', function(e){
          e.preventDefault();
          const formData = $(this).serialize();
            $.ajax({
                 type : "POST",
-                url: "{% url 'Обратная связь' %}",
+                url: "{% url 'Блог' %}",
                 data: formData,
 
                 success: function(data){
@@ -31,4 +27,6 @@
             });
                  });
 </script>
+<h1>{{last_blog.title}}</h1>
+{{last_blog.text}}
 {% endblock content %}
